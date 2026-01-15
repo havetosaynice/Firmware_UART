@@ -38,10 +38,10 @@ extern uint8_t DataAcquired;
 extern uint8_t FirmwareBuff[];
 
 
-extern uint32_t FirmwareFlag = 0;//固件标志
+extern uint32_t FirmwareFlag;//固件标志
 //固件大小
-extern uint32_t FirmwareSize = 0;//接收包时候实时变化
-extern uint32_t FirmwareSizeFinally = 0;//最终接收包大小
+extern uint32_t FirmwareSize;//接收包时候实时变化
+extern uint32_t FirmwareSizeFinally;//最终接收包大小
 extern uint16_t FirmwareCRC;
 extern uint16_t FirmwareVersion;
 extern uint16_t ReIndex;

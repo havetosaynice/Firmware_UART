@@ -24,13 +24,13 @@
 #include <stdlib.h>
 
 /* USER CODE BEGIN 0 */
-//½ÓÊÕ
+//ï¿½ï¿½ï¿½ï¿½
 uint8_t  Uart1_RX_Buf[UART1_RX_BUF_LEN];
-uint16_t Uart1_RX_Len = 0;  // ½ÓÊÕÊý¾Ý³¤¶È    £¨Ã»ÓÃ£©
-uint8_t  Uart1_RX_Flag = 0; // ½ÓÊÕÍê³É±êÖ¾Î»			£¨Ã»ÓÃ£©
-//·¢ËÍ
-uint8_t  Uart1_TX_Flag = 0; // ·¢ËÍÍê³É±êÖ¾Î»
-uint8_t  Uart1_TX_Busy = 0; // ·¢ËÍÃ¦±êÖ¾Î»
+uint16_t Uart1_RX_Len = 0;  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½    ï¿½ï¿½Ã»ï¿½Ã£ï¿½
+uint8_t  Uart1_RX_Flag = 0; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É±ï¿½Ö¾Î»			ï¿½ï¿½Ã»ï¿½Ã£ï¿½
+//ï¿½ï¿½ï¿½ï¿½
+uint8_t  Uart1_TX_Flag = 0; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É±ï¿½Ö¾Î»
+uint8_t  Uart1_TX_Busy = 0; // ï¿½ï¿½ï¿½ï¿½Ã¦ï¿½ï¿½Ö¾Î»
 
 /* USER CODE END 0 */
 
@@ -169,16 +169,16 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
-//´®¿ÚÍêÈ«·¢ËÍ»Øµ÷º¯Êý
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½Í»Øµï¿½ï¿½ï¿½ï¿½ï¿½
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 {
     if(huart == &huart1)
     {
-        uart1_tx_flag = 1;  // ÖÃÎ»·¢ËÍÍê³É±êÖ¾Î»£¬mainº¯Êý¿É¼ì²â
-        uart1_tx_busy = 0;  // ·¢ËÍÍê³É£¬Çå³ý·¢ËÍÃ¦±êÖ¾Î»
+        uart1_tx_flag = 1;  // ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É±ï¿½Ö¾Î»ï¿½ï¿½mainï¿½ï¿½ï¿½ï¿½ï¿½É¼ï¿½ï¿½
+        uart1_tx_busy = 0;  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¦ï¿½ï¿½Ö¾Î»
     }
 }
-//´®¿Ú¿ÕÏÐ»Øµ÷º¯Êý£¬´Ó½ÓÊÕ×ªµ½¿ÕÏÐÊ±ºò
+//ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½Ð»Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
 	uitn8_t Crcl = 0,Crch = 0;
@@ -188,10 +188,10 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
         if(huart->RxEventType == HAL_UART_RXEVENT_IDLE)
         {
         	Crc = CalculateCRC(Uart1_RX_Buf,Size-2);
-        /¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
+        /ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             Uart1_RX_Len = Size;
-            Uart1_RX_Flag = 1; //½ÓÊÕÊý¾Ý³É¹¦
-		/¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
+            Uart1_RX_Flag = 1; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý³É¹ï¿½
+		/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if(Uart1_RX_Buf[0] == 0x02)
 			{
 				Crcl = Uart1_RX_Buf[Size - 2];
@@ -238,13 +238,13 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 uint8_t RequestPackage(uint8_t PackageIndex)
 {
 	CRC_USER Crc;
-	const uint8_t  RequesData[4] = {0x01, PackageIndex,}; // DMA·¢ËÍ»º³åÇø
+	const uint8_t  RequesData[4] = {0x01, PackageIndex,}; // DMAï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½
 	Crc = CalculateCRC(RequesData,2);
 	RequesData[2] = Crc.CRCL;
 	RequesData[3] = Crc.CRCH;
 	HAL_UART_Transmit_DMA(&huart1, RequesData, sizeof(RequesData));
-	Uart1_TX_Flag = 0;               // ·¢ËÍÍê³É±êÖ¾Î»
-	Uart1_TX_Busy = 1;               // ·¢ËÍÃ¦±êÖ¾Î»
+	Uart1_TX_Flag = 0;               // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É±ï¿½Ö¾Î»
+	Uart1_TX_Busy = 1;               // ï¿½ï¿½ï¿½ï¿½Ã¦ï¿½ï¿½Ö¾Î»
 }
 
 /* USER CODE END 1 */
